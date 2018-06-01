@@ -1,0 +1,30 @@
+$(document).ready(function(){
+	var token = window.localStorage.getItem("token");
+	var loginName = getuserInfo(token);		//  判断用户是否有登录
+	$("span[name=loginName]").each(function(){
+		console.log(loginName);
+		$(this).html(loginName);
+	});
+	$(".loginOut").click(function(){
+		$.ajax({
+			url: domain + "/iuser/loginOut?token=Bearer " + token,
+			dataType : "json",
+			type : "post",
+			async : false,
+			error : function(data){
+				if(data.status == '401'){
+					alert("获取用户信息错误,请重新登录");
+					window.location.href = "login.html";
+				}
+				else{
+					alert("系统出错");
+					window.location.href = "login.html";
+				}
+			},
+			success : function(data){
+				window.localStorage.setItem("token", null);
+				window.location.href = "login.html";
+			}
+		});
+	});
+});

@@ -1,0 +1,273 @@
+﻿<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>物流账单管理系统</title>
+    <link rel="stylesheet" href="css/public.css"/>
+    <link rel="stylesheet" href="css/style.css"/>
+	<link href="css/lyz.calendar.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<!--头部-->
+<header class="publicHeader">
+    <h1>物流账单管理系统</h1>
+
+    <div class="publicHeaderR">
+        <p><span id="hours">下午好！</span><span style="color: #fff21b" name="loginName"> Admin</span> , 欢迎你！</p>
+        <a href="##" class="loginOut">退出</a>
+    </div>
+</header>
+<!--时间-->
+<section class="publicTime">
+    <span id="time">2015年1月1日 11:11  星期一</span>
+    <a href="#">温馨提示：为了能正常浏览，请使用高版本浏览器！（IE10+）</a>
+</section>
+<!--主体内容-->
+<section class="publicMian ">
+    <div class="left">
+        <h2 class="leftH2"><span class="span1"></span>功能列表 <span></span></h2>
+        <nav>
+            <ul class="list">
+                <li id="active"><a href="billList.html">账单管理</a></li>
+                <li><a href="##" class="loginOut">退出系统</a></li>
+            </ul>
+        </nav>
+    </div>
+    <div class="right">
+        <div class="location">
+            <strong>你现在所在的位置是:</strong>
+            <span>账单管理页面 >> 订单添加页面</span>
+        </div>
+        <div class="providerAdd">
+            <form action="#">
+                <!-- div的class 为error是验证错误，ok是验证成功 -->
+                <div>
+					<div class="inline-div">
+						<label for="billId">订单编码：</label>
+						<input type="text" name="billId" id="billId" required/>
+					</div>
+					<div class="inline-div" style="">
+						<label for="customerName">客户名称：</label>
+						<input type="text" name="customerName" id="customerName" required/>
+					</div>
+				</div>
+				
+				<div>
+					<div class="inline-div" style="">
+						<label for="fromAddress">始发地：</label>
+						<input type="text" name="fromAddress" id="fromAddress" required/>
+					</div>
+
+					<div class="inline-div">
+						<label for="toAddress">目的地：</label>
+						<input type="text" name="toAddress" id="toAddress" required/>
+					</div>
+				</div>
+
+				<div>
+					<div class="inline-div">
+						<label for="sender">发货人：</label>
+						<input type="text" name="sender" id="sender" required/>
+					</div>
+					<div class="inline-div">
+						<label for="senderMobile">发货人手机号：</label>
+						<input type="text" name="senderMobile" id="senderMobile" required/>
+					</div>
+					<div>
+						<label for="senderIdentityCard">发货人身份证：</label>
+						<input type="text" name="senderIdentityCard" id="senderIdentityCard" required/>
+					</div>
+				</div>
+
+				<div>
+					<div class="inline-div">
+						<label for="receiver">收货人：</label>
+						<input type="text" name="receiver" id="receiver" required/>
+					</div>
+					<div class="inline-div">
+						<label for="receiverMobile">收货人手机号：</label>
+						<input type="text" name="receiverMobile" id="receiverMobile" required/>
+					</div>
+				</div>
+
+				<div>
+					<div class="inline-div">
+						<label for="carNo">运输车牌号：</label>
+						<input type="text" name="carNo" id="carNo" required/>
+					</div>
+					<div class="inline-div">
+						<label for="receiveDate">收货日期：</label>
+						<input type="text" name="receiveDate" id="receiveDate" required/>
+					</div>
+				</div>
+				
+				<div>
+					<div class="inline-div">
+						<label for="transportFee">运输费用：</label>
+						<label for="transportFee" style="text-align: left;color: red;"><span id="transportFee" style="margin-left:0px;color:red">0</span>元</label>
+					</div>
+					<div style="margin-left: 160px;border: 1px solid #000;">
+						<div>
+							<div class="inline-div"><input type="checkbox" style="width: 20px;height: 20px;" value="1" name="payWay"/></div>
+							<label style="width: 40px;">公斤：</label>
+							<input class="transportFeeInput" style="width: 60px;" type="text" name="kiloWay" readonly/>
+							<label style="width: 40px;text-align:left">kg</label>
+							<label style="width: 40px;">单价：</label>
+							<input class="transportFeeInput" style="width: 60px;" type="text" name="kiloFee" readonly/>
+							<label style="width: 40px;text-align:left">元</label>
+						</div>
+						<div>
+							<div class="inline-div"><input type="checkbox" style="width: 20px;height: 20px;" value="2" name="payWay"/></div>
+							<label style="width: 40px;">立方：</label>
+							<input class="transportFeeInput" style="width: 60px;" type="text" name="cubeWay" readonly/>
+							<label style="width: 40px;text-align:left">m³</label>
+							<label style="width: 40px;">单价：</label>
+							<input class="transportFeeInput" style="width: 60px;" type="text" name="cubeFee" readonly/>
+							<label style="width: 40px;text-align:left">元</label>
+						</div>
+						<div>
+							<div class="inline-div"><input type="checkbox" style="width: 20px;height: 20px;" value="3" name="payWay"/></div>
+							<label style="width: 40px;">件数：</label>
+							<input class="transportFeeInput" style="width: 60px;" type="text" name="unitBigWay" readonly/>
+							<label style="width: 40px;text-align:left">大件</label>
+							<label style="width: 40px;">单价：</label>
+							<input class="transportFeeInput" style="width: 60px;" type="text" name="unitBigFee" readonly/>
+							<label style="width: 40px;text-align:left">元</label>
+						</div>
+						<div>
+							<div class="inline-div"><input type="checkbox" style="width: 20px;height: 20px;" value="4" name="payWay"/></div>
+							<label style="width: 40px;">件数：</label>
+							<input class="transportFeeInput" style="width: 60px;" type="text" name="unitMiddleWay" readonly/>
+							<label style="width: 40px;text-align:left">中件</label>
+							<label style="width: 40px;">单价：</label>
+							<input class="transportFeeInput" style="width: 60px;" type="text" name="unitMiddleFee" readonly/>
+							<label style="width: 40px;text-align:left">元</label>
+						</div>
+						<div>
+							<div class="inline-div"><input type="checkbox" style="width: 20px;height: 20px;" value="5" name="payWay"/></div>
+							<label style="width: 40px;">件数：</label>
+							<input class="transportFeeInput" style="width: 60px;" type="text" name="unitSmallWay" readonly/>
+							<label style="width: 40px;text-align:left">小件</label>
+							<label style="width: 40px;">单价：</label>
+							<input class="transportFeeInput" style="width: 60px;" type="text" name="unitSmallFee" readonly/>
+							<label style="width: 40px;text-align:left">元</label>
+						</div>
+						<div>
+							<div class="inline-div"><input type="checkbox" style="width: 20px;height: 20px;" value="6" name="payWay"/></div>
+							<label style="width: 40px;">车数：</label>
+							<input class="transportFeeInput" style="width: 60px;" type="text" name="carWay" readonly/>
+							<label style="width: 40px;text-align:left">车</label>
+							<label style="width: 40px;">单价：</label>
+							<input class="transportFeeInput" style="width: 60px;" type="text" name="carFee" readonly/>
+							<label style="width: 40px;text-align:left">元</label>
+						</div>
+					</div>
+				</div>
+
+				<div>
+					<div class="inline-div" style="width: 300px">
+						<label for="otherFee">其他费用：</label>
+						<div style="margin-left: 160px;border: 1px solid #000;">
+							<div>
+								<label style="width: 60px;">送货费：</label>
+								<input class="numberInput" style="width: 60px;" type="text" name="deliverFee"/>
+								<label style="width: 40px;text-align:left">元</label>
+								<label style="width: 60px;">中转费：</label>
+								<input class="numberInput" style="width: 60px;" type="text" name="shipmentFee"/>
+								<label style="width: 40px;text-align:left">元</label>
+								<label style="width: 60px;">收手费：</label>
+								<input class="numberInput" style="width: 60px;" type="text" name="chargeFee"/>
+								<label style="width: 40px;text-align:left">元</label>
+								<label style="width: 60px;">仓库费：</label>
+								<input class="numberInput" style="width: 60px;" type="text" name="warehouseFee"/>
+								<label style="width: 40px;text-align:left">元</label>
+							</div>
+							<div>
+								<label style="width: 60px;">代收货款：</label>
+								<input class="numberInput" style="width: 60px;" type="text" name="collectionFee"/>
+								<label style="width: 40px;text-align:left">元</label>
+								<label style="width: 60px;">保价费：</label>
+								<input class="numberInput" style="width: 60px;" type="text" name="insuranceFee"/>
+								<label style="width: 40px;text-align:left">元</label>
+								<label style="width: 60px;">其他费用：</label>
+								<input class="numberInput" style="width: 60px;" type="text" name="otherFee"/>
+								<label style="width: 40px;text-align:left">元</label>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div>
+					<div class="inline-div" style="width: 300px">
+						<label for="feePayType">费用结算方式：</label>
+						<div style="margin-left: 160px;border: 1px solid #000;">
+							<div>
+								<input style="width: 10px;" type="radio" name="feePayType" value="1"/>
+								<label style="width: 40px;text-align:left">月结</label>
+								<input style="width: 10px;" type="radio" name="feePayType" value="2"/>
+								<label style="width: 40px;text-align:left">提付</label>
+								<input style="width: 10px;" type="radio" name="feePayType" value="3"/>
+								<label style="width: 40px;text-align:left">现付</label>
+								<input style="width: 10px;" type="radio" name="feePayType" value="4"/>
+								<label style="width: 60px;text-align:left">提/现付</label>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div>
+					<div class="inline-div">
+						<label for="feeReceivable">应收费：</label>
+						<input class="numberInput" type="text" name="feeReceivable" id="feeReceivable" required/>
+						<label style="width: 40px;text-align:left">元</label>
+					</div>
+					<div class="inline-div">
+						<label for="realCharge">实收费：</label>
+						<input class="numberInput" type="text" name="realCharge" id="realCharge" required/>
+						<label style="width: 40px;text-align:left">元</label>
+					</div>
+				</div>
+
+				<div>
+					<div class="inline-div">
+						<label for="isFinshFee">是否付清费用：</label>
+						<input style="width: 10px;" type="radio" name="isFinshFee" value="1" />
+						<label style="width: 60px;text-align:left">是</label>
+						<input style="width: 10px;" type="radio" name="isFinshFee" value="0" />
+						<label style="width: 225px;text-align:left">否</label>
+					</div>
+					<div class="inline-div">
+						<label for="handledBy">经手人：</label>
+						<input type="text" name="handledBy" id="handledBy" required/>
+					</div>
+				</div>
+				
+				<div>
+					<div class="inline-div" style="width: 300px">
+						<label for="mark">备注：</label>
+						<div style="margin-left: 160px;">
+							<div>
+								<input type="text" name="mark" id="mark" style="width: 700px;height: 60px;" />
+							</div>
+						</div>
+					</div>
+				</div>
+
+                <div class="providerAddBtn">
+                    <input type="button" value="保存" id="save"/>
+                    <input type="button" value="返回"/>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</section>
+<footer class="footer">
+</footer>
+<script src="js/jquery-1.4.4.min.js"></script>
+<script src="js/time.js"></script>
+<script src="js/js.js"></script>
+<script src="js/lyz.calendar.min.js"></script>
+<script src="js/billAdd.js"></script>
+</body>
+</html>

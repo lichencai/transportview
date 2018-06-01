@@ -1,0 +1,78 @@
+﻿<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>物流账单管理系统</title>
+    <link rel="stylesheet" href="css/public.css"/>
+    <link rel="stylesheet" href="css/style.css"/>
+</head>
+<body>
+<!--头部-->
+<header class="publicHeader">
+    <h1>物流账单管理系统</h1>
+    <div class="publicHeaderR">
+        <p><span id="hours">下午好！</span><span style="color: #fff21b" name="loginName"> Admin</span> , 欢迎你！</p>
+        <a href="##" class="loginOut">退出</a>
+    </div>
+</header>
+<!--时间-->
+<section class="publicTime">
+    <span id="time">2015年1月1日 11:11  星期一</span>
+    <a href="#">温馨提示：为了能正常浏览，请使用高版本浏览器！（IE10+）</a>
+</section>
+<!--主体内容-->
+<section class="publicMian ">
+    <div class="left">
+        <h2 class="leftH2"><span class="span1"></span>功能列表 <span></span></h2>
+        <nav>
+            <ul class="list">
+                <li id="active"><a href="billList.html">账单管理</a></li>
+                <li><a href="##" class="loginOut">退出系统</a></li>
+            </ul>
+        </nav>
+    </div>
+    <div class="right">
+        <div class="location">
+            <strong>你现在所在的位置是:</strong>
+            <span>账单管理页面 >> 信息查看</span>
+        </div>
+        <div class="providerView">
+            <p><strong>订单编号：</strong><span id="billId">231</span></p>
+            <p><strong>客户名称：</strong><span id="customerName">张三三</span></p>
+            <p><strong>发货人：</strong><span id="sender">张三三</span></p>
+            <p><strong>发货人手机：</strong><span id="senderMobile">15913190239</span></p>
+            <p><strong>收货人：</strong><span id="receiver">李四四</span></p>
+            <p><strong>收货人手机：</strong><span id="receiverMobile">15913190239</span></p>
+            
+
+            <p><strong>运输费：</strong><span id="transportFee">22</span><span>元</span></p>
+            <p><strong>送货费：</strong><span id="deliverFee">22</span><span>元</span></p>
+            <p><strong>中转费：</strong><span id="shipmentFee">22</span><span>元</span></p>
+            <p><strong>收手费：</strong><span id="chargeFee">22</span><span>元</span></p>
+            <p><strong>仓库费：</strong><span id="warehouseFee">22</span><span>元</span></p>
+            <p><strong>代收货款：</strong><span id="collectionFee">22</span><span>元</span></p>
+            <p><strong>保价费：</strong><span id="insuranceFee">22</span><span>元</span></p>
+            <p><strong>其他费用：</strong><span id="otherFee">22</span><span>元</span></p>
+
+            <p><strong>费用结算方式：</strong><span id="feePayType">月结</span></p>
+
+            <p><strong>应收费：</strong><span id="feeReceivable">22</span><span>元</span></p>
+            <p><strong>实收费：</strong><span id="realCharge">22</span><span>元</span></p>
+
+            <p><strong>经手人：</strong><span id="handledBy">王五五</span></p>
+
+            <p><strong>备注：</strong><span id="mark">22</span></p>
+			<a href="##" style="margin-left:0px">打印</a>
+            <a href="billList.html" style="margin-left:0px">返回</a>
+        </div>
+    </div>
+</section>
+<footer class="footer">
+</footer>
+<script src="js/jquery-1.4.4.min.js"></script>
+<script src="js/time.js"></script>
+<script src="js/js.js"></script>
+<script src="js/lyz.calendar.min.js"></script>
+<script src="js/billView.js"></script>
+</body>
+</html>
