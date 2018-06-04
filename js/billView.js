@@ -46,4 +46,9 @@ $(document).ready(function(){
 	var id = getvalue('id');
 	var billData = getBillData(id);
 	initBillInfo(billData);
+
+	$("#printMsg").click(function(){
+		$("#printFrame").attr('src','./printIframe.html');
+	});
+
 });
