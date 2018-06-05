@@ -1,6 +1,10 @@
 //供应商管理页面上点击删除按钮弹出删除框(providerList.html)
 //var domain = "http://lichencai79159.nat123.net:12708/illegal"
-var domain = "http://localhost:8082/illegal"
+var domain = "http://localhost:8082/illegal";
+var pageSize = 1;
+var globalPageNo = 1;
+var token = window.localStorage.getItem("token");
+
 $(function () {
     $('.removeProvider').click(function () {
         $('.zhezhao').css('display', 'block');
@@ -66,11 +70,11 @@ $(document).ready(function(){
 	var url = window.location.href;
 	if(url.indexOf('login.html') != -1)
 		return;
-	var token = window.localStorage.getItem("token");
 	var loginName = getuserInfo(token);		//  判断用户是否有登录
 	$("span[name=loginName]").each(function(){
 		$(this).html(loginName);
-	});
+    });
+    
 	$(".loginOut").click(function(){
 		$.ajax({
 			url: domain + "/iuser/loginOut?token=Bearer " + token,
@@ -92,9 +96,10 @@ $(document).ready(function(){
 				window.location.href = "login.html";
 			}
 		});
-	});
+    });
+    
 });
-
+//  判断是否是数字
 function isNumber(value) {         //验证是否为数字
     var patrn = /^(-)?\d+(\.\d+)?$/;
     if (patrn.exec(value) == null || value == "") {
@@ -103,7 +108,7 @@ function isNumber(value) {         //验证是否为数字
         return true
     }
 }
-
+// 日期格式化
 Date.prototype.format = function(fmt) { 
      var o = { 
         "M+" : this.getMonth()+1,                 //月份 
@@ -150,7 +155,7 @@ $.fn.pager = function(page, total, callback) {
 function getBillData(id){
 	var params = {};
 	params.id = id;
-	var billInfo = null;
+	var billData = null;
 	$.ajax({
         url : domain + "/bill/editBill?token=Bearer " + token,
 		data : params,
@@ -161,10 +166,10 @@ function getBillData(id){
 			alert("系统出错");
         },
         success : function(data){
-			billInfo = data.data;
+			billData = data.data;
         }
     });
-	return billInfo;
+	return billData;
 }
 // 获取url上面入参name的值
 function getvalue(name){    

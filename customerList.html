@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head lang="en">
     <meta charset="UTF-8">
@@ -29,8 +29,8 @@
         <h2 class="leftH2"><span class="span1"></span>功能列表 <span></span></h2>
         <nav>
             <ul class="list">
-                <li id="active"><a href="billList.html">账单管理</a></li>
-                <li><a href="customerList.html">客户管理</a></li>
+                <li><a href="billList.html">账单管理</a></li>
+                <li id="active"><a href="customerList.html">客户管理</a></li>
 				<li><a href="reportList.html">报表统计</a></li>
                 <li><a href="##" class="loginOut">退出系统</a></li>
             </ul>
@@ -40,54 +40,26 @@
     <div class="right">
         <div class="location">
             <strong>你现在所在的位置是:</strong>
-            <span>账单管理页面</span>
+            <span>客户管理页面</span>
         </div>
         <div class="search">
             <span>客户名称：</span>
             <input type="text" placeholder="客户名称" name="customerName"/>
 
-            <span>是否完成：</span>
-            <select name="isFinshAll">
-                <option value="">--请选择--</option>
-                <option value="1">是</option>
-                <option value="0">否</option>
-            </select>
-
-            <span>是否付清：</span>
-            <select name="isFinshFee">
-                <option value="">--请选择--</option>
-                <option value="1">是</option>
-                <option value="0">否</option>
-            </select>
-        </div>
-
-        <div class="search">
-            <div class="inline-div">
-                <span>开始时间：</span>
-                <input type="text" name="beginDate" id="beginDate"/>
-            </div>
-            <span>结束时间：</span>
-            <input type="text" name="endDate" id="endDate"/>
-
-
             <input id="btnSearch" type="button" value="查询"/>
 
-            <a href="##" id="addOrder">添加订单</a>
+            <a href="##" id="addCustomer">添加客户</a>
         </div>
 
         <!--账单表格 样式和供应商公用-->
         <table class="providerTable" cellpadding="0" cellspacing="0" id="providerTable">
             <tr class="firstTr">
-                <th width="10%">账单编码</th>
                 <th width="10%">客户名称</th>
-                <th width="6%">发货人</th>
-                <th width="10%">发货人手机</th>
-                <th width="6%">收货人</th>
-                <th width="10%">收货人手机</th>
-                <th width="5%">应收款</th>
-                <th width="5%">实收款</th>
-                <th width="5%">是否付清</th>
-                <th width="5%">是否完成</th>
+                <th width="10%">手机号码</th>
+                <th width="10%">固话</th>
+                <th width="10%">传真</th>
+                <th width="7%">邮箱</th>
+                <th width="25%">地址</th>
                 <th width="8%">创建时间</th>
                 <th width="20%">操作</th>
             </tr>
@@ -106,25 +78,13 @@
     <div class="removerChid">
         <h2>提示</h2>
         <div class="removeMain">
-            <p><label id="tip">你确定要删除该订单吗？</label></p>
+            <p><label id="tip">你确定要删除该客户吗？</label></p>
             <a href="#" id="yes">确定</a>
             <a href="#" id="no">取消</a>
-            <input type="hidden" id="dialogType">
             <input type="hidden" id="itemId">
         </div>
     </div>
 </div>
-
-<!-- <div class="finsh" id="finshBi">
-    <div class="removerChid">
-        <h2>提示</h2>
-        <div class="removeMain">
-            <p>你确定要完成该订单吗？</p>
-            <a href="#" id="yes">确定</a>
-            <a href="#" id="no">取消</a>
-        </div>
-    </div>
-</div> -->
 
 <footer class="footer">
 </footer>
@@ -132,6 +92,6 @@
 <script src="js/time.js"></script>
 <script src="js/js.js"></script>
 <script src="js/lyz.calendar.min.js"></script>
-<script src="js/billList.js"></script>
+<script src="js/customerList.js"></script>
 </body>
 </html>

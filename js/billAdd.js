@@ -1,6 +1,4 @@
-
-var token = window.localStorage.getItem("token");
-
+//  创建订单信息
 function createBillData(billData){
 	if(!billData){
 		billData = new Object();
@@ -70,7 +68,13 @@ function createBillData(billData){
 
 	return JSON.stringify(billData);
 }
-
+/**
+ * 改变运输费用的checkbox事件
+ * @param {*} val 代表哪一个运输费用
+ * @param {*} enable 是否允许输入
+ * @param {*} way 数量
+ * @param {*} fee 单价
+ */
 function checkboxFunc(val, enable, way, fee){
 	if(val == 1){
 		if(enable){
@@ -146,7 +150,10 @@ function checkboxFunc(val, enable, way, fee){
 		}
 	}
 }
-
+/**
+ * 计算运输费用
+ * @param {*} val 代表哪一种运输费用
+ */
 function calculateTransport(val){
 	var unit,fee;
 	if(val == 1){
@@ -175,7 +182,10 @@ function calculateTransport(val){
 	return unit * fee;
 }
 
-
+/**
+ * 初始化页面的值
+ * @param {*} billData 从后台获取到的json数据
+ */
 function initPage(billData){
 
 	$("#billId").val(billData.billInfo.billId);
@@ -228,8 +238,7 @@ function initPage(billData){
 		checkboxFunc(billDetailFeeInfos[i].type, true, billDetailFeeInfos[i].unit, billDetailFeeInfos[i].fee);
 	}
 }
-
-
+//  日期控件
 $(function () {
 	$("#receiveDate").calendar({
 		controlId: "divDate",                                 // 弹出的日期控件ID，默认: $(this).attr("id") + "Calendar"

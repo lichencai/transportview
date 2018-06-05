@@ -1,0 +1,97 @@
+create table sys_dict(
+   id INT NOT NULL AUTO_INCREMENT,
+   value INT,
+   label VARCHAR(40),
+   type VARCHAR(40),
+   description VARCHAR(40),
+   sort INT,
+   parent_id INT,
+   create_date DATETIME,
+   del_flag INT,
+   PRIMARY KEY (id)
+);
+
+create table i_user(
+   id INT NOT NULL AUTO_INCREMENT,
+   login_name VARCHAR(40),
+   password VARCHAR(40),
+   name VARCHAR(40),
+   email VARCHAR(40),
+   phone VARCHAR(40),
+   mobile VARCHAR(40),
+   login_ip VARCHAR(40),
+   login_date DATETIME,
+   login_flag INT,
+   create_date DATETIME,
+   PRIMARY KEY (id)
+);
+
+create table customer_info(
+   id INT NOT NULL AUTO_INCREMENT,
+   customer_name VARCHAR(40),
+   address VARCHAR(200),
+   mobile VARCHAR(40),
+   telephone VARCHAR(40),
+   fax VARCHAR(40),
+   email VARCHAR(40),
+   birthday DATETIME,
+   mark VARCHAR(200),
+   creator VARCHAR(40),
+   update_user VARCHAR(40),
+   delete_flag INT,
+   update_date DATETIME,
+   create_date DATETIME,
+   PRIMARY KEY (id)
+);
+
+create table bill_info(
+   id INT NOT NULL AUTO_INCREMENT,
+   bill_id VARCHAR(40),
+   customer_name VARCHAR(40),
+   from_address VARCHAR(200),
+   to_address VARCHAR(200),
+   sender VARCHAR(40),
+   sender_mobile VARCHAR(40),
+   sender_identity_card VARCHAR(40),
+   receiver VARCHAR(40),
+   receiver_mobile VARCHAR(40),
+   car_no VARCHAR(40),
+   receive_date DATETIME,
+   is_finsh_fee INT,
+   handled_by VARCHAR(40),
+   mark VARCHAR(40),
+   create_date DATETIME,
+   update_date DATETIME,
+   is_finsh_all INT,
+   creator VARCHAR(40),
+   update_user VARCHAR(40),
+   delete_flag INT,
+   PRIMARY KEY (id)
+);
+
+create table bill_fee(
+   id INT NOT NULL AUTO_INCREMENT,
+   bill_info_id INT,
+   transport_fee DOUBLE,
+   deliver_fee DOUBLE,
+   shipment_fee DOUBLE,
+   charge_fee DOUBLE,
+   warehouse_fee DOUBLE,
+   collection_fee DOUBLE,
+   insurance_fee DOUBLE,
+   other_fee DOUBLE,
+   fee_pay_type INT,
+   fee_receivable DOUBLE,
+   real_charge DOUBLE,
+   PRIMARY KEY (id)
+);
+
+create table bill_detail_fee_info(
+   id INT NOT NULL AUTO_INCREMENT,
+   bill_fee_id INT,
+   type INT,
+   unit DOUBLE,
+   fee DOUBLE,
+   delete_flag INT,
+   PRIMARY KEY (id)
+);

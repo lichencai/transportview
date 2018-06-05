@@ -1,7 +1,3 @@
-var pageSize = 10;
-var globalPageNo = 1;
-var token = window.localStorage.getItem("token");
-
 $(function () {
     $("#beginDate").calendar({
         controlId: "divDate",                                 // 弹出的日期控件ID，默认: $(this).attr("id") + "Calendar"
