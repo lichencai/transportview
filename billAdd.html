@@ -54,6 +54,7 @@
 					<div class="inline-div">
 						<label for="customerName">客户名称：</label>
 						<input type="text" name="customerName" id="customerName" required/>
+						<input type="hidden" name="customerInfoId" id="customerInfoId" required/>
 					</div>
 				</div>
 				
@@ -93,6 +94,10 @@
 						<label for="receiverMobile">收货人手机号：</label>
 						<input type="text" name="receiverMobile" id="receiverMobile" required/>
 					</div>
+					<div>
+						<label for="receiverIdentityCard">收货人身份证：</label>
+						<input type="text" name="receiverIdentityCard" id="receiverIdentityCard" required/>
+					</div>
 				</div>
 
 				<div>
@@ -108,8 +113,23 @@
 				
 				<div>
 					<div class="inline-div">
+						<label for="productName">货品名称：</label>
+						<input type="text" name="productName" id="productName" required/>
+					</div>
+					<div class="inline-div">
+						<label for="productPack">包装：</label>
+						<input type="text" name="productPack" id="productPack" required/>
+					</div>
+					<div>
+						<label for="productNumber">件数：</label>
+						<input type="text" name="productNumber" id="productNumber" class="numberInput" required/>
+					</div>
+				</div>
+
+				<div>
+					<div class="inline-div">
 						<label for="transportFee">运输费用：</label>
-						<label for="transportFee" style="text-align: left;color: red;"><span id="transportFee" style="margin-left:0px;color:red">0</span>元</label>
+						<label for="transportFee" style="text-align: left;color: red;font-size: 20px"><span id="transportFee" style="margin-left:0px;color:red">0</span>元</label>
 					</div>
 					<div style="margin-left: 160px;border: 1px solid #000;">
 						<div>
@@ -172,30 +192,60 @@
 				<div>
 					<div class="inline-div" style="width: 300px">
 						<label for="otherFee">其他费用：</label>
+						<label for="totalOtherFee" style="text-align: left;color: red;font-size: 20px"><span id="totalOtherFee" style="margin-left:0px;color:red">0</span>元</label>
 						<div style="margin-left: 160px;border: 1px solid #000;">
 							<div>
 								<label style="width: 60px;">送货费：</label>
-								<input class="numberInput" style="width: 60px;" type="text" name="deliverFee"/>
+								<input class="otherFeeInput numberInput" style="width: 60px;" type="text" name="deliverFee"/>
 								<label style="width: 40px;text-align:left">元</label>
 								<label style="width: 60px;">中转费：</label>
-								<input class="numberInput" style="width: 60px;" type="text" name="shipmentFee"/>
-								<label style="width: 40px;text-align:left">元</label>
-								<label style="width: 60px;">手续费：</label>
-								<input class="numberInput" style="width: 60px;" type="text" name="chargeFee"/>
+								<input class="otherFeeInput numberInput" style="width: 60px;" type="text" name="shipmentFee"/>
 								<label style="width: 40px;text-align:left">元</label>
 								<label style="width: 60px;">仓库费：</label>
-								<input class="numberInput" style="width: 60px;" type="text" name="warehouseFee"/>
-								<label style="width: 40px;text-align:left">元</label>
-							</div>
-							<div>
-								<label style="width: 60px;">代收货款：</label>
-								<input class="numberInput" style="width: 60px;" type="text" name="collectionFee"/>
-								<label style="width: 40px;text-align:left">元</label>
-								<label style="width: 60px;">保价费：</label>
-								<input class="numberInput" style="width: 60px;" type="text" name="insuranceFee"/>
+								<input class="otherFeeInput numberInput" style="width: 60px;" type="text" name="warehouseFee"/>
 								<label style="width: 40px;text-align:left">元</label>
 								<label style="width: 60px;">其他费用：</label>
-								<input class="numberInput" style="width: 60px;" type="text" name="otherFee"/>
+								<input class="otherFeeInput numberInput" style="width: 60px;" type="text" name="otherFee"/>
+								<label style="width: 40px;text-align:left">元</label>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div>
+					<div class="inline-div" style="width: 300px">
+						<label for="otherFee">是否保价：</label>
+						<input style="width: 10px;" type="radio" name="offerRadio" value="1" />
+						<label style="width: 60px;text-align:left">是</label>
+						<input style="width: 10px;" type="radio" name="offerRadio" value="0" checked/>
+						<label style="width: 225px;text-align:left">否</label>
+						<div style="margin-left: 160px;border: 1px solid #000;">
+							<div>
+								<label style="width: 60px;">保价：</label>
+								<input class="numberInput" style="width: 60px;" type="text" name="offer" readonly/>
+								<label style="width: 40px;text-align:left">元</label>
+								<label style="width: 60px;">保价费：</label>
+								<input class="numberInput" style="width: 60px;" type="text" name="insuranceFee" readonly/>
+								<label style="width: 40px;text-align:left">元</label>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<div>
+					<div class="inline-div" style="width: 300px">
+						<label for="otherFee">是否代收货款：</label>
+						<input style="width: 10px;" type="radio" name="collectionRadio" value="1" />
+						<label style="width: 60px;text-align:left">是</label>
+						<input style="width: 10px;" type="radio" name="collectionRadio" value="0" checked/>
+						<label style="width: 225px;text-align:left">否</label>
+						<div style="margin-left: 160px;border: 1px solid #000;">
+							<div>
+								<label style="width: 60px;">代收货款：</label>
+								<input class="numberInput" style="width: 60px;" type="text" name="collectionFee" readonly/>
+								<label style="width: 40px;text-align:left">元</label>
+								<label style="width: 60px;">手续费：</label>
+								<input class="numberInput" style="width: 60px;" type="text" name="chargeFee" readonly/>
 								<label style="width: 40px;text-align:left">元</label>
 							</div>
 						</div>
@@ -207,7 +257,7 @@
 						<label for="feePayType">费用结算方式：</label>
 						<div style="margin-left: 160px;border: 1px solid #000;">
 							<div>
-								<input style="width: 10px;" type="radio" name="feePayType" value="1"/>
+								<input style="width: 10px;" type="radio" name="feePayType" value="1" checked/>
 								<label style="width: 40px;text-align:left">月结</label>
 								<input style="width: 10px;" type="radio" name="feePayType" value="2"/>
 								<label style="width: 40px;text-align:left">提付</label>
@@ -223,7 +273,7 @@
 				<div>
 					<div class="inline-div">
 						<label for="feeReceivable">应收费：</label>
-						<input class="numberInput" type="text" name="feeReceivable" id="feeReceivable" required/>
+						<input class="numberInput" type="text" name="feeReceivable" id="feeReceivable" readonly required/>
 						<label style="width: 40px;text-align:left">元</label>
 					</div>
 					<div class="inline-div">
@@ -238,7 +288,7 @@
 						<label for="isFinshFee">是否付清费用：</label>
 						<input style="width: 10px;" type="radio" name="isFinshFee" value="1" />
 						<label style="width: 60px;text-align:left">是</label>
-						<input style="width: 10px;" type="radio" name="isFinshFee" value="0" />
+						<input style="width: 10px;" type="radio" name="isFinshFee" value="0" checked/>
 						<label style="width: 225px;text-align:left">否</label>
 					</div>
 					<div class="inline-div">

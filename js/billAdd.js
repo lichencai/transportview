@@ -10,7 +10,7 @@ function createBillData(billData){
 	}
 
 	billData.billInfo.billId = $("#billId").val();
-	billData.billInfo.customerName = $("#customerName").val();
+	billData.billInfo.customerInfoId = $("#customerInfoId").val();
 	billData.billInfo.fromAddress = $("#fromAddress").val();
 	billData.billInfo.toAddress = $("#toAddress").val();
 	billData.billInfo.sender = $("#sender").val();
@@ -20,6 +20,10 @@ function createBillData(billData){
 	billData.billInfo.receiverMobile = $("#receiverMobile").val();
 	billData.billInfo.carNo = $("#carNo").val();
 	billData.billInfo.receiveDate = $("#receiveDate").val();
+	billData.billInfo.receiverIdentityCard = $("#receiverIdentityCard").val();
+	billData.billInfo.productName = $("#productName").val();
+	billData.billInfo.productPack = $("#productPack").val();
+	billData.billInfo.productNumber = $("#productNumber").val() * 1;
 
 	billData.billFee.transportFee = $("#transportFee").html() * 1;
 	billData.billFee.deliverFee = $("input[name='deliverFee']").val() * 1;
@@ -27,6 +31,7 @@ function createBillData(billData){
 	billData.billFee.chargeFee = $("input[name='chargeFee']").val() * 1;
 	billData.billFee.warehouseFee = $("input[name='warehouseFee']").val() * 1;
 	billData.billFee.collectionFee = $("input[name='collectionFee']").val() * 1;
+	billData.billFee.offer = $("input[name='offer']").val() * 1;
 	billData.billFee.insuranceFee = $("input[name='insuranceFee']").val() * 1;
 	billData.billFee.otherFee = $("input[name='otherFee']").val() * 1;
 	billData.billFee.feePayType = $('input:radio[name="feePayType"]:checked').val();
@@ -189,7 +194,8 @@ function calculateTransport(val){
 function initPage(billData){
 
 	$("#billId").val(billData.billInfo.billId);
-	$("#customerName").val(billData.billInfo.customerName);
+	if(billData.customerInfo)
+		$("#customerName").val(billData.customerInfo.customerName);
 	$("#fromAddress").val(billData.billInfo.fromAddress);
 	$("#toAddress").val(billData.billInfo.toAddress);
 	$("#sender").val(billData.billInfo.sender);
@@ -198,6 +204,11 @@ function initPage(billData){
 	$("#receiver").val(billData.billInfo.receiver);
 	$("#receiverMobile").val(billData.billInfo.receiverMobile);
 	$("#carNo").val(billData.billInfo.carNo);
+	$("#customerInfoId").val(billData.billInfo.customerInfoId);
+	$("#productName").val(billData.billInfo.productName);
+	$("#productPack").val(billData.billInfo.productPack);
+	$("#productNumber").val(billData.billInfo.productNumber);
+	$("#receiverIdentityCard").val(billData.billInfo.receiverIdentityCard);
 	
 	$("#receiveDate").val(new Date(billData.billInfo.receiveDate).format("yyyy-MM-dd"));
 	
@@ -209,6 +220,11 @@ function initPage(billData){
 	$("input[name='collectionFee']").val(billData.billFee.collectionFee);
 	$("input[name='insuranceFee']").val(billData.billFee.insuranceFee);
 	$("input[name='otherFee']").val(billData.billFee.otherFee);
+	$("input[name='offer']").val(billData.billFee.offer);
+	var otherTotalFee = 0;
+	otherTotalFee = billData.billFee.deliverFee + billData.billFee.shipmentFee 
+		+ billData.billFee.warehouseFee + billData.billFee.otherFee;
+	$("#totalOtherFee").html(otherTotalFee);
 
 	$('input:radio[name="feePayType"]').each(function(){
 		if($(this).val() == billData.billFee.feePayType){
@@ -237,7 +253,63 @@ function initPage(billData){
 		});
 		checkboxFunc(billDetailFeeInfos[i].type, true, billDetailFeeInfos[i].unit, billDetailFeeInfos[i].fee);
 	}
+
+	if(!billData.billFee.chargeFee || !billData.billFee.collectionFee){
+		$("input:radio[name='collectionRadio'][value='1']").attr('checked', 'true');
+		$("input[name='chargeFee']").attr("readonly", false);
+		$("input[name='collectionFee']").attr("readonly", false);
+	}
+
+	if(!billData.billFee.insuranceFee || !billData.billFee.offer){
+		$("input:radio[name='offerRadio'][value='1']").attr('checked', 'true');
+		$("input[name='insuranceFee']").attr("readonly", false);
+		$("input[name='offer']").attr("readonly", false);
+	}
 }
+/**
+ * 获取其他费用的总和
+ */
+function getTotalOtherFee(){
+	var totalOtherFee = 0;
+	var deliverFee = $("input[name='deliverFee']").val() * 1;
+	if(!deliverFee) deliverFee = 0;
+	var shipmentFee = $("input[name='shipmentFee']").val() * 1;
+	if(!shipmentFee) shipmentFee = 0;
+	var warehouseFee = $("input[name='warehouseFee']").val() * 1;
+	if(!warehouseFee) warehouseFee = 0;
+	var otherFee = $("input[name='otherFee']").val() * 1;
+	if(!otherFee) otherFee = 0;
+	totalOtherFee = deliverFee + shipmentFee + warehouseFee + otherFee;
+	return totalOtherFee;
+}
+/**
+ * 获取运输费用
+ */
+function getTransportFee(){
+	var transportFee = 0;
+	$("input[name='payWay']").each(function(){
+		var val = $(this).val();
+		var enable = $(this).is(':checked');
+		if(enable){
+			transportFee += calculateTransport(val);
+		}
+	});
+	return transportFee;
+}
+/**
+ * 计算应收款
+ */
+function getFeeReceivable(){
+	var transportFee = getTransportFee();
+	var totalOtherFee = getTotalOtherFee();
+	var chargeFee = $("input[name='chargeFee']").val() * 1;
+	if(!chargeFee) chargeFee = 0;
+	var insuranceFee = $("input[name='insuranceFee']").val() * 1;
+	if(!insuranceFee) insuranceFee = 0;
+	var feeReceivable = transportFee + totalOtherFee + chargeFee + insuranceFee;
+	$("#feeReceivable").val(feeReceivable);
+}
+
 //  日期控件
 $(function () {
 	$("#receiveDate").calendar({
@@ -286,14 +358,14 @@ $(document).ready(function(){
 	$("#back").click(function(){
 		window.location.href = "billList.html";
 	});
-	
+	// 复选框改变事件
 	$("input[name='payWay']").change(function(){
 		var val = $(this).val();
 		var enable = $(this).is(':checked');
 		checkboxFunc(val, enable, "", "");
 		$(".transportFeeInput").change();
 	});
-
+	//  运输费用输入框改变事件
 	$(".transportFeeInput").change(function(){
 		var v = $(this).val();
 		if(!isNumber(v) && v){
@@ -301,22 +373,49 @@ $(document).ready(function(){
 			$(this).focus();
 			return ;
 		}
-
-		var transportFee = 0;
-		$("input[name='payWay']").each(function(){
-			var val = $(this).val();
-			var enable = $(this).is(':checked');
-			if(enable){
-				transportFee += calculateTransport(val);
-			}
-		});
+		var transportFee = getTransportFee();
 		$("#transportFee").html(transportFee);
+		getFeeReceivable();
 	});
 
-	$(".numberInput").blur(function(){
+	// 是否代收货款
+	$('input:radio[name="collectionRadio"]').change(function(){
+		var isChecked = $('input:radio[name="collectionRadio"]:checked').val();
+		if(isChecked == 1){
+			$("input[name='collectionFee']").attr("readonly", false);
+			$("input[name='chargeFee']").attr("readonly", false);
+		}else{
+			$("input[name='collectionFee']").val("");
+			$("input[name='chargeFee']").val("");
+			$("input[name='collectionFee']").attr("readonly", true);
+			$("input[name='chargeFee']").attr("readonly", true);
+		}
+	});
+
+	// 是否保价
+	$('input:radio[name="offerRadio"]').change(function(){
+		var isChecked = $('input:radio[name="offerRadio"]:checked').val();
+		if(isChecked == 1){
+			$("input[name='offer']").attr("readonly", false);
+			$("input[name='insuranceFee']").attr("readonly", false);
+		}else{
+			$("input[name='offer']").val("");
+			$("input[name='insuranceFee']").val("");
+			$("input[name='offer']").attr("readonly", true);
+			$("input[name='insuranceFee']").attr("readonly", true);
+		}
+	});
+
+	$(".numberInput").change(function(){
 		var val = $(this).val();
 		if(val && !isNumber(val)){
 			alert('金额填入有误');
+			$(this).focus();
+			return ;
 		}
+		var totalOtherFee = getTotalOtherFee();
+		$("#totalOtherFee").html(totalOtherFee);
+		getFeeReceivable();
+
 	});
 });
