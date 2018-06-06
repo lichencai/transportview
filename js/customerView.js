@@ -3,6 +3,7 @@ function initCustomerInfo(customerData){
         return ;
     }
     $("#customerName").html(customerData.customerName);
+    $("#customerId").html(customerData.customerId);
     $("#address").html(customerData.address);
     $("#mobile").html(customerData.mobile);
     $("#telephone").html(customerData.telephone);

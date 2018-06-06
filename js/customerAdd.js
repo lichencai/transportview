@@ -17,7 +17,8 @@ function initPage(customerData){
     if(!customerData){
         return ;
     }
-    $("#customerName").val(customerData.customerName);
+	$("#customerName").val(customerData.customerName);
+	$("#customerId").val(customerData.customerId);
     $("#address").val(customerData.address);
     $("#mobile").val(customerData.mobile);
     $("#telephone").val(customerData.telephone);
@@ -34,7 +35,8 @@ function createCustomerData(customerData){
     if(!customerData){
         customerData = new Object();
     }
-    customerData.customerName =  $("#customerName").val();
+	customerData.customerName =  $("#customerName").val();
+	customerData.customerId =  $("#customerId").val();
     customerData.address =  $("#address").val();
     customerData.mobile =  $("#mobile").val();
     customerData.telephone =  $("#telephone").val();
