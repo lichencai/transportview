@@ -263,7 +263,6 @@ $(document).ready(function(){
 
 	$("#save").click(function(){
 		var params = createBillData(billData);
-		console.log(params);
 		$.ajax({
 			url : domain + "/bill/saveOrUpdateBill?token=Bearer " + token,
 			data : params,
