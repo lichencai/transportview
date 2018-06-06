@@ -1,6 +1,3 @@
-
-var token = window.localStorage.getItem("token");
-
 function initBillInfo(billData){
 	if(!billData){
 		return;

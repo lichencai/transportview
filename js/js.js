@@ -171,6 +171,26 @@ function getBillData(id){
     });
 	return billData;
 }
+// 根据id获取客户信息
+function getcustomerData(id){
+	var params = {};
+	params.id = id;
+	var customerData = null;
+	$.ajax({
+        url : domain + "/customer/editCustomerInfo?token=Bearer " + token,
+		data : params,
+        dataType : "json",
+        type : "post",
+        async : false,
+        error : function(data){
+			alert("系统出错");
+        },
+        success : function(data){
+			customerData = data.data;
+        }
+    });
+	return customerData;
+}
 // 获取url上面入参name的值
 function getvalue(name){    
 	var str = window.location.search;   //location.search是从当前URL的?号开始的字符串     
