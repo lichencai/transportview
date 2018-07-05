@@ -2,41 +2,34 @@ function initBillInfo(billData){
 	if(!billData){
 		return;
 	}
+
+	console.log(billData);
+
 	var billInfo = billData.billInfo;
 	var billFee = billData.billFee;
-	$("#billId").html(billInfo.billId);
-	$("#customerName").html(billInfo.customerName);
+	var customerInfo = billData.customerInfo;
+	$("#customerName").html(customerInfo.customerName);
 	$("#sender").html(billInfo.sender);
+
+
 	$("#senderMobile").html(billInfo.senderMobile);
-	$("#receiver").html(billInfo.receiver);
 	$("#receiverMobile").html(billInfo.receiverMobile);
 
-	$("#transportFee").html(billFee.transportFee);
-	$("#deliverFee").html(billFee.deliverFee);
-	$("#shipmentFee").html(billFee.shipmentFee);
-	$("#chargeFee").html(billFee.chargeFee);
-	$("#warehouseFee").html(billFee.warehouseFee);
-	$("#collectionFee").html(billFee.collectionFee);
-	$("#insuranceFee").html(billFee.insuranceFee);
-	$("#otherFee").html(billFee.otherFee);
-	
-	var feePayType = null;
-	if(billFee.feePayType == 1){
-		feePayType = '月结';
-	}else if(billFee.feePayType == 2){
-		feePayType = '提付';
-	}else if(billFee.feePayType == 3){
-		feePayType = '现付';
-	}else if(billFee.feePayType == 4){
-		feePayType = '提/现付';
-	}
-	$("#feePayType").html(feePayType);
 
-	$("#feeReceivable").html(billFee.feeReceivable);
-	$("#realCharge").html(billFee.realCharge);
+	$("#productName").html(billInfo.productName);
+	$("#productNumber").html(billInfo.productNumber);
+
+	$("#transportFee").html(billFee.transportFee);
+
+	$("#offer").html(billFee.offer);
+	$("#insuranceFee").html(billFee.insuranceFee);
+	$("#shipmentFee").html(billFee.shipmentFee);
+	$("#deliverFee").html(billFee.deliverFee);
+
+
+	$("#collectionFee").html(billFee.collectionFee);
 
 	$("#handledBy").html(billInfo.handledBy);
-	$("#mark").html(billInfo.mark);
 }
 
 $(document).ready(function(){
