@@ -53,7 +53,7 @@
 					</div>
 					<div class="inline-div">
 						<label for="customerName">客户名称：</label>
-						<input type="text" name="customerName" id="customerName" required/>
+						<input type="text" name="customerName" id="customerName" readonly required/>
 						<input type="button" name="chooseCustomer" id="chooseCustomer" value="选择" style="width: 60px;line-height: 0px;padding-left: 0px;box-shadow: none;"/>
 						<input type="hidden" name="customerInfoId" id="customerInfoId" value="1" required/>
 					</div>
@@ -318,6 +318,60 @@
 
 	</div>
 </section>
+
+<div class="zhezhao"></div>
+<div class="remove1" id="removeBi">
+    <div class="removerChid1">
+        <div class="removeMain1">
+			<table class="providerTable" cellpadding="0" cellspacing="0" id="providerTable">
+				<tr class="firstTr">
+					<th width="10%"></th>
+					<th width="30%">客户名称</th>
+					<th width="30%">手机号码</th>
+					<th width="30%">地址</th>
+				</tr>
+				<tr class="dataTr">
+					<td><input type="radio" name="id" value="1"/></td>
+					<td>张三</td>
+					<td>15913190239</td>
+					<td>广东省汕头市</td>
+				</tr>
+				<tr class="dataTr">
+					<td><input type="radio" name="id" value="2"/></td>
+					<td>李四</td>
+					<td>15913190239</td>
+					<td>广东省汕头市</td>
+				</tr>
+			</table>
+		</div>
+		<input type="button" value="确定" id="customerSure"/>
+		<input type="button" value="取消" id="customerCancel"/>
+    </div>
+</div>
+
+<div id="choose-box-wrapper" style="display: none;">
+	<!-- <table width="300px" id="popApplier" align="center" cellpadding="3" cellspacing="0" border="1" bordercolorlight="gray" bordercolordark="#ffffff">
+			<tr align="center" name="headerRow">
+				<td height="35px" width="10px" align="center" class="text_label"> </td>
+				<td height="35px" width="30px" align="center" class="text_label">序号</td>
+				<td height="35px" width="50px" align="center" class="text_label" >编号</td>
+				<td height="35px" width="50px" align="center" class="text_label">姓名</td>
+			</tr>
+			<tr>
+				<td align='center' class='text_label'><input type='checkbox' name='chxSelected'/></td>
+				<td align='left' class='text_label'><div name='seq'>1</div></td>
+				<td align='left' class='text_label'><div name='seq'>1</div></td>
+				<td align='left' class='text_label'><div name='seq'>1</div></td>
+			</tr>
+			<tr>
+				<td colspan="8" align="center">
+					<span><input type="button" value="确认"/></span>
+					<span><input type="button" value="取消"/></span>
+				</td>
+			</tr>
+	</table> -->
+	
+</div>
 <footer class="footer">
 </footer>
 <script src="js/jquery-1.4.4.min.js"></script>

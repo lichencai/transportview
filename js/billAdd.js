@@ -310,6 +310,40 @@ function getFeeReceivable(){
 	$("#feeReceivable").val(feeReceivable);
 }
 
+/**
+ * 初始化客户列表
+ */
+function initCustomerData(){
+	$.ajax({
+		url : domain + "/customer/getAllCustomerInfos?token=Bearer " + token,
+		data : {},
+		dataType : "json",
+		contentType:"application/json",
+		type : "post",
+		async : false,
+		error : function(data){
+			alert("系统出错");
+		},
+		success : function(data){
+			var status = data.status;
+			if(status == 1){
+				data = data.data;
+				console.log(data.length);
+				var tr = '';
+				for(var i = 0; i < data.length; i++){
+					tr += "<tr class='dataTr'><td>";
+					tr += '<input type="radio" name="id" value="' + data[i].id + '"/>' + "</td><td>";
+					tr += data[i].customerName + "</td><td>";
+					tr += data[i].mobile + "</td><td>";
+					tr += data[i].address + "</td></tr>";
+				}
+				$("#providerTable").append(tr);
+			}
+		}
+	});
+}
+
+
 //  日期控件
 $(function () {
 	$("#receiveDate").calendar({
@@ -416,9 +450,37 @@ $(document).ready(function(){
 		var totalOtherFee = getTotalOtherFee();
 		$("#totalOtherFee").html(totalOtherFee);
 		getFeeReceivable();
-
 	});
 
+	$("#chooseCustomer").click(function(){
+		// pop();
+		$('.zhezhao').css('display', 'block');
+		$('#removeBi').fadeIn();
+	});
 
+	initCustomerData();
+
+	$(".dataTr").click(function(){
+		$(".dataTr").each(function(){
+			$(this).css("background-color", "");
+			$(this).find("input[name='id']").attr('checked', 'false');
+		});
+		$(this).css("background-color", "beige");
+		$(this).find("input[name='id']").attr('checked', 'true');
+	});
+
+	$("#customerSure").click(function(){
+		var customerInfoId = $('input:radio[name="id"]:checked').val();
+		var customerName = $('input:radio[name="id"]:checked').parent().parent().children("td").eq(1).html();
+		$("#customerInfoId").val(customerInfoId);
+		$("#customerName").val(customerName);
+		$('.zhezhao').css('display', 'none');
+        $('#removeBi').fadeOut();
+	});
+
+	$("#customerCancel").click(function(){
+		$('.zhezhao').css('display', 'none');
+        $('#removeBi').fadeOut();
+	});
 
 });

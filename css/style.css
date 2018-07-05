@@ -359,6 +359,20 @@ input[type='reset']:active, input[type='reset']:focus, .providerView a:hover, .p
     margin: 4px;
     border: 1px solid #ccc;
 }
+.remove1{
+     display: none;       /* 修改这里可以让删除框消失*/
+     width: 800px;
+     height: 500px;
+     position: absolute;
+     top: 100px;
+     left:240px;
+     background: #fff;
+     border-radius: 4px;
+ }
+ .removerChid1{
+     margin: 4px;
+     border: 1px solid #ccc;
+ }
 .removerChid h2{
     padding-left: 8px;
     font-size: 14px;
@@ -371,6 +385,15 @@ input[type='reset']:active, input[type='reset']:focus, .providerView a:hover, .p
     text-align: center;
     margin-bottom: 30px;
     border-radius: 4px;
+}
+.removeMain1{
+    margin-top: 38px;
+    text-align: center;
+    margin-bottom: 30px;
+    border-radius: 4px;
+    OVERFLOW-Y: auto;
+    width: 750px;
+    height: 400px;
 }
 .removeMain a{
     padding: 0 20px;
@@ -385,7 +408,6 @@ input[type='reset']:active, input[type='reset']:focus, .providerView a:hover, .p
 }
 .removeMain a:hover,.removeMain a:active{
     background: #679016;
-
 }
 
 

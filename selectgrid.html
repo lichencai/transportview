@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>SelectGrid 弹出选择表格（JS）</title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    
+    <link href="./css/demo.css" rel="stylesheet" type="text/css" />
+    <script src="./js/boot.js" type="text/javascript"></script>
+    <script src="./js/UserSelectWindow.js" type="text/javascript"></script>    
+</head>
+<body>
+    <h1>SelectGrid 弹出选择表格（JS）</h1>      
+
+    <input id="btnEdit1" class="mini-buttonedit" onbuttonclick="onButtonEdit"/>
+    
+
+
+    
+    <script type="text/javascript">
+        mini.parse();
+
+        function onButtonEdit(e) {
+            var buttonEdit = e.sender;
+            // {"total":36,"maxAge":37,"avgAge":26.9286,"minAge":24,"data":[{"city":"","age":30,"gender":2,"dept_id":"sc","email":"shcheng@163.com","position_name":"销售经理","salary":"5600","createtime":"2012-01-31T13:28:28","school":"南京晓庄学院","name":"施华成","educational_name":"本科","married":1,"educational":"2","id":"8cb7e27c-ebab-48b5-bf83-67f8294e8797","birthday":"1982-05-04T00:00:00","country":"","position":"sc2","loginname":"shcheng@163.com","remarks":"","dept_name":"市场部"},{"city":"","age":24,"gender":1,"dept_id":"sc","email":"hk2006@qq.com","position_name":"销售员","salary":"2900","createtime":"2012-01-31T13:28:27","school":"湖南科技大学","name":"黄凯","educational_name":"本科","married":0,"educational":"2","id":"7ef2fc41-27b2-4991-9134-189f95d76c42","birthday":"1988-01-28T00:00:00","country":"","position":"sc3","loginname":"hk2006@qq.com","remarks":"","dept_name":"市场部"},{"city":"","age":35,"gender":1,"dept_id":"sc","email":"tangyue@gmail.com","position_name":"市场总监","salary":"6300","createtime":"2012-01-31T13:28:26","school":"金陵科技大学","name":"唐岳","educational_name":"本科","married":1,"educational":"2","id":"b4366fb3-fb9c-4244-b3b6-c56de0c70cde","birthday":"1977-06-21T00:00:00","country":"","position":"sc1","loginname":"tangyue@gmail.com","remarks":"","dept_name":"市场部"},{"city":"","age":25,"gender":2,"dept_id":"sc","email":"wl19861219@163.com","position_name":"销售员","salary":"3000","createtime":"2012-01-31T13:28:26","school":"南京审计学院","name":"王岚","educational_name":"本科","married":0,"educational":"2","id":"a817ca24-ede0-4932-8455-b1e86eb7772d","birthday":"1987-08-19T00:00:00","country":"","position":"sc3","loginname":"wl19861219@163.com","remarks":"","dept_name":"市场部"},{"city":"","age":27,"gender":2,"dept_id":"js","email":"wss2005@qq.com","position_name":"美工","salary":"3700","createtime":"2012-01-31T11:10:47","school":"南京审计学院","name":"王珊珊","educational_name":"本科","married":1,"educational":"2","id":"7cc225c6-2673-4993-ab02-288e15fc351b","birthday":"1985-03-12T00:00:00","country":"","position":"js4","loginname":"wss2005@qq.com","remarks":"","dept_name":"技术部"},{"city":"","age":25,"gender":2,"dept_id":"cw","email":"19880141x@qq.com","position_name":"出纳","salary":"3100","createtime":"2012-01-31T11:10:47","school":"合肥学院","name":"薛乃馨","educational_name":"本科","married":0,"educational":"2","id":"a46d28db-c484-4e58-9076-166cb957a152","birthday":"1987-01-20T00:00:00","country":"","position":"cw3","loginname":"19880141x@qq.com","remarks":"","dept_name":"财务部"},{"city":"","age":28,"gender":1,"dept_id":"js","email":"wwy@yahoo.com","position_name":"美工","salary":"4320","createtime":"2012-01-31T11:10:47","school":"铜陵学院","name":"吴蔚一","educational_name":"本科","married":1,"educational":"2","id":"beb61bb1-9c6c-4c93-8d82-ab784cc00b27","birthday":"1984-06-12T00:00:00","country":"","position":"js4","loginname":"wwy@yahoo.com","remarks":"","dept_name":"技术部"},{"city":"","age":26,"gender":2,"dept_id":"js","email":"jinyi1987@qq.com","position_name":"后台工程师","salary":"3987","createtime":"2012-01-31T11:10:41","school":"江苏大学","name":"金怡","educational_name":"本科","married":0,"educational":"2","id":"c95c8c42-9fa9-4188-9a6e-0cb676d824e5","birthday":"1986-04-14T00:00:00","country":"","position":"js2","loginname":"jinyi1987@qq.com","remarks":"","dept_name":"技术部"},{"city":"","age":27,"gender":1,"dept_id":"js","email":"ywq2000@163.com","position_name":"前端工程师","salary":"4632","createtime":"2012-01-31T11:10:40","school":"三江学院","name":"袁维琦","educational_name":"本科","married":1,"educational":"2","id":"6f1da849-7fea-4fe1-ba33-71f7d4a6412d","birthday":"1985-01-09T00:00:00","country":"","position":"js3","loginname":"ywq2000@163.com","remarks":"","dept_name":"技术部"},{"city":"","age":37,"gender":1,"dept_id":"js","email":"hongweishi@hotmail.com","position_name":"技术总监","salary":"6350","createtime":"2012-01-31T11:10:39","school":"江苏科技大学","name":"施宏伟","educational_name":"本科","married":1,"educational":"2","id":"626c9bd1-c99b-4969-9af8-58d216c2a49b","birthday":"1975-10-16T00:00:00","country":"","position":"js1","loginname":"hongweishi@hotmail.com","remarks":"","dept_name":"技术部"}]}
+            var win = new UserSelectWindow();
+            win.set({
+                url: "http://www.miniui.com/demo/data/AjaxService.aspx?method=SearchEmployees",                    
+                title: "用户选择",
+                width: 600,
+                height: 350
+            });
+            
+            win.show();
+            //win.search();
+
+            //初始化数据
+            win.setData(null, function (action) {
+                if (action == "ok") {
+                    //获取数据
+                    var row = win.getData();
+                    if (row) {                        
+                        buttonEdit.setValue(row.id);
+                        buttonEdit.setText(row.name);
+
+                        alert("选中记录: " + row.name);
+                    }
+                }
+            });
+        }
+        
+    </script>
+    <div class="description">
+        <h3>Description</h3>
+        
+    </div>
+</body>
+</html>

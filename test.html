@@ -1,0 +1,40 @@
+<input type='hidden' style='width:100px' class='text_input' name='ApplierID'  id='ApplierID' value='<%=oFile.getApplierID()%>'/>
+<%String applier = gd.getNameListByCode("XT_User", "UserID", oFile.getApplierID(), "UserName",";"); %>
+<input type='text' style='width:100px' class='text_input' name='Applier'  id='Applier' value='<%=applier%>'  onclick="pop()"/>
+    <!-- 弹出框 begin -->
+    <!--alert layer-->  
+    <div id="choose-box-wrapper" style="display: none;background:rgb(242,250,255);width:300px;border:1px solid;">
+
+        <input type="text" id="txtKeyword" value="" />
+        <script>writeGeneralImageBtn("btnSearch","搜索","搜索","search.gif","searchUser()");</script>
+        <table  width="300px" id="popApplier" align="center" cellpadding="3" cellspacing="0" border="1" bordercolorlight="gray" bordercolordark="#ffffff">
+                <tr align="center" name="headerRow">
+                    <td height="35px" width="10px" align="center" class="text_label"> </td>
+                    <td height="35px" width="30px" align="center" class="text_label">序号</td>
+                    <td height="35px" width="50px" align="center" class="text_label" >编号</td>
+                    <td height="35px" width="50px" align="center" class="text_label">姓名</td>
+                </tr>
+                <tr>
+                    <td align='center' class='text_label'><input type='checkbox' name='chxSelected'/></td>
+                    <td align='left' class='text_label'><div name='seq'>1</div></td>
+                    <td align='left' class='text_label'><div name='seq'>1</div></td>
+                    <td align='left' class='text_label'><div name='seq'>1</div></td>
+                </tr>
+                <tr>
+                    <td colspan="8" align="right">
+                        <script>writeGeneralImageBtn("btnLast","上一页","上一页","","lastPageApplier()");</script>
+                        <script>writeGeneralImageBtn("btnNext","下一页","下一页","","nextPageApplier()");</script>
+                    共<label id="lbTotal">0</label>条记录,共<label id="lbTotalPage">0</label>页,第<label id="lbPage">1</label>页
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="8" align="center">
+                    <script>writeGeneralImageBtn("btnDoSelect","确定","确定","","doSelect()");</script>
+                    <script>writeGeneralImageBtn("btnHide","关闭","关闭","","hide()");</script>
+                </tr>
+        </table>
+    </div>
+    <!--alert layer-->
+
+
+    
