@@ -196,6 +196,7 @@ function initPage(billData){
 	$("#billId").val(billData.billInfo.billId);
 	if(billData.customerInfo)
 		$("#customerName").val(billData.customerInfo.customerName);
+	
 	$("#fromAddress").val(billData.billInfo.fromAddress);
 	$("#toAddress").val(billData.billInfo.toAddress);
 	$("#sender").val(billData.billInfo.sender);
@@ -335,6 +336,7 @@ function initCustomerData(){
 					tr += '<input type="radio" name="id" value="' + data[i].id + '"/>' + "</td><td>";
 					tr += data[i].customerName + "</td><td>";
 					tr += data[i].mobile + "</td><td>";
+					tr += data[i].customerId + "</td><td>";
 					tr += data[i].address + "</td></tr>";
 				}
 				$("#providerTable").append(tr);
@@ -472,8 +474,15 @@ $(document).ready(function(){
 	$("#customerSure").click(function(){
 		var customerInfoId = $('input:radio[name="id"]:checked').val();
 		var customerName = $('input:radio[name="id"]:checked').parent().parent().children("td").eq(1).html();
+		var mobile = $('input:radio[name="id"]:checked').parent().parent().children("td").eq(2).html();
+		var customerId = $('input:radio[name="id"]:checked').parent().parent().children("td").eq(3).html();
+		var address = $('input:radio[name="id"]:checked').parent().parent().children("td").eq(4).html();
 		$("#customerInfoId").val(customerInfoId);
 		$("#customerName").val(customerName);
+		$("#sender").val(customerName);
+		$("#senderMobile").val(mobile);
+		$("#senderIdentityCard").val(senderIdentityCard);
+
 		$('.zhezhao').css('display', 'none');
         $('#removeBi').fadeOut();
 	});

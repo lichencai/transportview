@@ -8,13 +8,12 @@ function initBillInfo(billData){
 	var billInfo = billData.billInfo;
 	var billFee = billData.billFee;
 	var customerInfo = billData.customerInfo;
-	$("#customerName").html(customerInfo.customerName);
-	$("#sender").html(billInfo.sender);
 
+	$("#customerName").html(billInfo.sender);
+	$("#telephone").html(billInfo.senderMobile);
 
-	$("#senderMobile").html(billInfo.senderMobile);
+	$("#receiver").html(billInfo.receiver);
 	$("#receiverMobile").html(billInfo.receiverMobile);
-
 
 	$("#productName").html(billInfo.productName);
 	$("#productNumber").html(billInfo.productNumber);
@@ -25,7 +24,6 @@ function initBillInfo(billData){
 	$("#insuranceFee").html(billFee.insuranceFee);
 	$("#shipmentFee").html(billFee.shipmentFee);
 	$("#deliverFee").html(billFee.deliverFee);
-
 
 	$("#collectionFee").html(billFee.collectionFee);
 
