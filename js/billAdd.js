@@ -312,12 +312,75 @@ function getFeeReceivable(){
 }
 
 /**
+ * 获取客户列表
+ * @param {*} pageNo 当前页
+ */
+function getCustomerInfo(pageNo){
+    globalPageNo = pageNo;
+	var params = getSearchParams();
+	params.pageNo = pageNo;
+	params.pageSize = pageSize;
+	params = JSON.stringify(params);
+
+	$.ajax({
+		url : domain + "/customer/getCustomerInfoList?token=Bearer " + token,
+		data : params,
+		dataType : "json",
+		contentType:"application/json",
+		type : "post",
+		async : false,
+		error : function(data){
+			alert("系统出错");
+		},
+		success : function(data){
+			var status = data.status;
+			if(status == 1){
+				data = data.data;
+				initTableInfo(data);
+				$('.pager').pager(pageNo, data.totalPages, go);
+			}
+		}
+	});
+}
+
+/**
+ * 分页点击回调函数
+ * @param {*} p 跳转的页码
+ */
+function go(p) {
+	getCustomerInfo(p);
+}
+
+/**
+ * 初始化客户列表
+ */
+function initTableInfo(data){
+	var vos = data.vos;
+	var tableSize = $("#providerTable tr").size();
+	for(var i = 0; i < tableSize; i++){
+		var id = "#tr" + i;
+		$(id).remove();
+	}
+	for(var i = 0; i < vos.length; i++){
+		var tr = '';
+		tr += "<tr class='dataTr' id='tr_tr_' onclick='chooseCustomer(this)'><td>";
+		tr += '<input type="radio" name="id" value="' + vos[i].id + '"/>' + "</td><td>";
+		tr += vos[i].customerName + "</td><td>";
+		tr += vos[i].mobile + "</td><td>";
+		tr += vos[i].customerId + "</td><td>";
+		tr += vos[i].address + "</td></tr>";
+		tr = tr.replace("_tr_", i);
+		$("#providerTable").append(tr);
+	}
+}
+
+/**
  * 初始化客户列表
  */
 function initCustomerData(){
 	$.ajax({
 		url : domain + "/customer/getAllCustomerInfos?token=Bearer " + token,
-		data : {},
+		data : params,
 		dataType : "json",
 		contentType:"application/json",
 		type : "post",
@@ -345,6 +408,20 @@ function initCustomerData(){
 	});
 }
 
+/**
+ * 点击客户列表行
+ */
+function chooseCustomer(me){
+	console.log("chooseCustomer");
+	var tableSize = $("#providerTable tr").size();
+	for(var i = 0; i < tableSize; i++){
+		var id = "#tr" + i;
+		$(id).css("background-color", "");
+		$(id).find("input[name='id']").attr('checked', 'false');
+	}
+	$(me).css("background-color", "beige");
+	$(me).find("input[name='id']").attr('checked', 'true');
+}
 
 //  日期控件
 $(function () {
@@ -357,6 +434,13 @@ $(function () {
 		}
 	});
 });
+
+//  查询客户
+function getSearchParams(){
+    var params = new Object();
+	params.customerName = $("input[name='searchCustomerName']").val();
+	return params;
+}
 
 $(document).ready(function(){
 	var id = getvalue('id');
@@ -460,9 +544,11 @@ $(document).ready(function(){
 		// pop();
 		$('.zhezhao').css('display', 'block');
 		$('#removeBi').fadeIn();
+		getCustomerInfo(1);
 	});
 
-	initCustomerData();
+	// initCustomerData();
+	getCustomerInfo(1);
 
 	$(".dataTr").click(function(){
 		$(".dataTr").each(function(){
@@ -486,12 +572,18 @@ $(document).ready(function(){
 		$("#senderIdentityCard").val(customerId);
 
 		$('.zhezhao').css('display', 'none');
-        $('#removeBi').fadeOut();
+		$('#removeBi').fadeOut();
+		$("input[name='searchCustomerName']").val('');
 	});
 
 	$("#customerCancel").click(function(){
 		$('.zhezhao').css('display', 'none');
-        $('#removeBi').fadeOut();
+		$('#removeBi').fadeOut();
+		$("input[name='searchCustomerName']").val('');
 	});
+
+	$("#btnSearch").click(function(){
+		getCustomerInfo(1);
+    });
 
 });

@@ -323,6 +323,11 @@
 <div class="remove1" id="removeBi">
     <div class="removerChid1">
         <div class="removeMain1">
+			<div class="search">
+				<span>客户名称：</span>
+				<input type="text" placeholder="客户名称" name="searchCustomerName"/>
+				<input id="btnSearch" type="button" value="查询"/>
+			</div>
 			<table class="providerTable" cellpadding="0" cellspacing="0" id="providerTable">
 				<tr class="firstTr">
 					<th width="10%"></th>
@@ -333,35 +338,15 @@
 				</tr>
 				
 			</table>
+			<div style="text-align:right">
+				<div class="pager"></div>
+			</div>
 		</div>
 		<input type="button" value="确定" id="customerSure"/>
 		<input type="button" value="取消" id="customerCancel"/>
     </div>
 </div>
 
-<div id="choose-box-wrapper" style="display: none;">
-	<!-- <table width="300px" id="popApplier" align="center" cellpadding="3" cellspacing="0" border="1" bordercolorlight="gray" bordercolordark="#ffffff">
-			<tr align="center" name="headerRow">
-				<td height="35px" width="10px" align="center" class="text_label"> </td>
-				<td height="35px" width="30px" align="center" class="text_label">序号</td>
-				<td height="35px" width="50px" align="center" class="text_label" >编号</td>
-				<td height="35px" width="50px" align="center" class="text_label">姓名</td>
-			</tr>
-			<tr>
-				<td align='center' class='text_label'><input type='checkbox' name='chxSelected'/></td>
-				<td align='left' class='text_label'><div name='seq'>1</div></td>
-				<td align='left' class='text_label'><div name='seq'>1</div></td>
-				<td align='left' class='text_label'><div name='seq'>1</div></td>
-			</tr>
-			<tr>
-				<td colspan="8" align="center">
-					<span><input type="button" value="确认"/></span>
-					<span><input type="button" value="取消"/></span>
-				</td>
-			</tr>
-	</table> -->
-	
-</div>
 <footer class="footer">
 </footer>
 <script src="js/jquery-1.4.4.min.js"></script>
