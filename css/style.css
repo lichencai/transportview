@@ -410,5 +410,7 @@ input[type='reset']:active, input[type='reset']:focus, .providerView a:hover, .p
     background: #679016;
 }
 
-
+.formValue {
+    font-weight: bold;
+}
 

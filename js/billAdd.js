@@ -426,6 +426,7 @@ $(document).ready(function(){
 			$("input[name='collectionFee']").attr("readonly", true);
 			$("input[name='chargeFee']").attr("readonly", true);
 		}
+		getFeeReceivable();
 	});
 
 	// 是否保价
@@ -440,6 +441,7 @@ $(document).ready(function(){
 			$("input[name='offer']").attr("readonly", true);
 			$("input[name='insuranceFee']").attr("readonly", true);
 		}
+		getFeeReceivable();
 	});
 
 	$(".numberInput").change(function(){
@@ -481,7 +483,7 @@ $(document).ready(function(){
 		$("#customerName").val(customerName);
 		$("#sender").val(customerName);
 		$("#senderMobile").val(mobile);
-		$("#senderIdentityCard").val(senderIdentityCard);
+		$("#senderIdentityCard").val(customerId);
 
 		$('.zhezhao').css('display', 'none');
         $('#removeBi').fadeOut();

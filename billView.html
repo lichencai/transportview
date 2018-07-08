@@ -45,17 +45,18 @@
             <h1>汕头市潮南区峡山大成货运站货物收款凭证</h1>
             <label>地址:汕头市潮南区峡山广汕公路洋汾林路段1516号后面(即海珠加油站斜对面)</label><br />
             <label>电话:0754-87905926 13822835926 传真:0754-87908778</label><br />
-            <label>到站:&nbsp;&nbsp;&nbsp;&nbsp;</label><label>2018年6月11日</label>
-            <table  border="1" cellspacing="0">
+            <label>到站:<span id="toAddress" class="formValue"></span>&nbsp;&nbsp;&nbsp;&nbsp;</label>
+            <label style="float: right;"><span id="createDate" class="formValue"></span></label>
+            <table style="width: -webkit-fill-available;" border="1" cellspacing="0">
                 <tr>
                     <td>发货单位</td>
-                    <td id="customerName" style="font-weight: bold;"></td>
+                    <td id="customerName" class="formValue"></td>
                     <td>电话</td>
-                    <td id="telephone" style="font-weight: bold;"></td>
+                    <td id="telephone" class="formValue"></td>
                     <td>收货单位</td>
-                    <td id="receiver" style="font-weight: bold;"></td>
+                    <td id="receiver" class="formValue"></td>
                     <td>电话</td>
-                    <td id="receiverMobile" style="font-weight: bold;"></td>
+                    <td id="receiverMobile" class="formValue"></td>
                 </tr>
                 <tr>
                     <td>品名</td>
@@ -70,67 +71,39 @@
                     <td>合计</td>
                 </tr>
                 <tr>
-                    <td id="productName"></td>
-                    <td id="productNumber"></td>
-                    <td></td>
-                    <td id="productPack"></td>
-                    <td id="transportFee"></td>
-                    <td id="offer"></td>
-                    <td id="insuranceFee"></td>
-                    <td id="shipmentFee"></td>
-                    <td id="deliverFee"></td>
-                    <td></td>
+                    <td id="productName" class="formValue"></td>
+                    <td id="productNumber" class="formValue"></td>
+                    <td id="kiloCount" class="formValue">0</td>
+                    <td id="productPack" class="formValue"></td>
+                    <td id="transportFee" class="formValue"></td>
+                    <td id="offer" class="formValue"></td>
+                    <td id="insuranceFee" class="formValue"></td>
+                    <td id="shipmentFee" class="formValue"></td>
+                    <td id="deliverFee" class="formValue"></td>
+                    <td id="totalFee" class="formValue"></td>
                 </tr>
                 <tr>
                     <td>代收货款</td>
-                    <td id="collectionFee"></td>
-                    <td>总金额(大写)&nbsp;&nbsp;仟&nbsp;&nbsp;佰&nbsp;&nbsp;拾&nbsp;&nbsp;元</td>
+                    <td id="collectionFee" class="formValue"></td>
+                    <td>总金额(大写)<span id="thousand"></span>仟<span id="hundred"></span>佰
+                        <span id="ten"></span>拾<span id="unit"></span>元</td>
                 </tr>
                 <tr>
                     <td>提货人签收</td>
                     <td></td>
                     <td>经办人</td>
-                    <td id="handledBy"></td>
+                    <td id="handledBy" class="formValue"></td>
                 </tr>
                 <tr>
                     <td>备注</td>
-                    <td></td>
+                    <td id="mark" class="formValue"></td>
                 </tr>
                 <tr>
                     <td>付款方式</td>
-                    <td>现金</td>
-                    <td></td>
-                    <td>提付</td>
-                    <td></td>
-                    <td>月结</td>
-                    <td></td>
+                    <td id="feePayType" class="formValue"></td>
                 </tr>
             </table>
-            <!-- <p><strong>订单编号：</strong><span id="billId">231</span></p>
-            <p><strong>客户名称：</strong><span id="customerName">张三三</span></p>
-            <p><strong>发货人：</strong><span id="sender">张三三</span></p>
-            <p><strong>发货人手机：</strong><span id="senderMobile">15913190239</span></p>
-            <p><strong>收货人：</strong><span id="receiver">李四四</span></p>
-            <p><strong>收货人手机：</strong><span id="receiverMobile">15913190239</span></p>
             
-
-            <p><strong>运输费：</strong><span id="transportFee">22</span><span>元</span></p>
-            <p><strong>送货费：</strong><span id="deliverFee">22</span><span>元</span></p>
-            <p><strong>中转费：</strong><span id="shipmentFee">22</span><span>元</span></p>
-            <p><strong>收手费：</strong><span id="chargeFee">22</span><span>元</span></p>
-            <p><strong>仓库费：</strong><span id="warehouseFee">22</span><span>元</span></p>
-            <p><strong>代收货款：</strong><span id="collectionFee">22</span><span>元</span></p>
-            <p><strong>保价费：</strong><span id="insuranceFee">22</span><span>元</span></p>
-            <p><strong>其他费用：</strong><span id="otherFee">22</span><span>元</span></p>
-
-            <p><strong>费用结算方式：</strong><span id="feePayType">月结</span></p>
-
-            <p><strong>应收费：</strong><span id="feeReceivable">22</span><span>元</span></p>
-            <p><strong>实收费：</strong><span id="realCharge">22</span><span>元</span></p>
-
-            <p><strong>经手人：</strong><span id="handledBy">王五五</span></p>
-
-            <p><strong>备注：</strong><span id="mark">22</span></p> -->
 			<a style="margin-left:0px" id="printMsg">打印</a>
             <a href="billList.html" style="margin-left:0px">返回</a>
         </div>
