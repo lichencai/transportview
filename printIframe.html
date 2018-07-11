@@ -11,22 +11,48 @@
     </style>
 </head>
 <body style="padding: 0;margin: 0;height: 100%;width: 100%;">
-<div id="printBody" style="width: 100%;height: 100%;"></div>
+<div id="printBody" style="width: 100%;height: 100%;">
+    <table>
+        <tr>
+            <td>发货单位</td><td>汕头</td><td>电话</td><td>15911111111</td><td>收货单位</td><td>广州</td><td>电话</td><td>15922222222</td>
+        </tr>
+    </table>
+
+
+
+</div>
+
 <script type="text/javascript" src="js/jquery-1.4.4.min.js"></script>
 <script type="text/javascript">
-    var pdata = [
-        {"id":"productId","top":"95","left":"20"},
-        {"id":"customer","top":"120","left":"80"},
-        {"id":"dfadfa","top":"150","left":"50"}
-    ]
-    var infoHtml = '';
-    for (var i = 0;i<pdata.length;i++){
-        var top1 = (pdata[i].top/176)*100+'%';
-        var left = (pdata[i].left/261)*100+'%';
-        infoHtml += '<span style="display:block;position:absolute;top:'+top1+';left:'+left+';">'+pdata[i].id+'</span>';
+    // var pdata = [
+    //     {"id":"productId","top":"95","left":"20"},
+    //     {"id":"customer","top":"120","left":"80"},
+    //     {"id":"dfadfa","top":"150","left":"50"}
+    // ]
+    // var infoHtml = '';
+    // for (var i = 0;i<pdata.length;i++){
+    //     var top1 = (pdata[i].top/176)*100+'%';
+    //     var left = (pdata[i].left/261)*100+'%';
+    //     infoHtml += '<span style="display:block;position:absolute;top:'+top1+';left:'+left+';">'+pdata[i].id+'</span>';
+    // }
+    function getvalue(name){    
+        var str = window.location.search;   //location.search是从当前URL的?号开始的字符串     
+        if (str.indexOf(name) != -1)	//判断是否收到值
+        {                
+            var pos_start = str.indexOf(name) + name.length+1;  //解析获取值   
+            var pos_end=str.indexOf("&", pos_start);        
+            if (pos_end==-1){  
+                return str.substring(pos_start);
+            }
+            else{           
+                return null;
+            }  
+        }
     }
-    $("#printBody").html(infoHtml);
-    window.print();
+    var id = getvalue('id');
+    //var infoHtml = $("#printBody")[0].innerHTML;
+    //$("#printBody").html(infoHtml);
+    //window.print();
 </script>
 </body>
 </html>

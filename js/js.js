@@ -1,6 +1,6 @@
 //供应商管理页面上点击删除按钮弹出删除框(providerList.html)
 //var domain = "http://lichencai79159.nat123.net:12708/illegal"
-var domain = "http://localhost:8081/illegal";
+var domain = "http://localhost:8082/illegal";
 var pageSize = 10;
 var globalPageNo = 1;
 var token = window.localStorage.getItem("token");

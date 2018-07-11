@@ -100,8 +100,8 @@ $(document).ready(function(){
 	var billData = getBillData(id);
 	initBillInfo(billData);
 
-	// $("#printMsg").click(function(){
-	// 	$("#printFrame").attr('src','./printIframe.html');
-	// });
+	$("#printMsg").click(function(){
+		$("#printFrame").attr('src','./printIframe.html?id=' + id);
+	});
 
 });
