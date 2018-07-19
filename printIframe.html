@@ -3,39 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <style type="text/css" media="print">
+    <!-- <style type="text/css" media="print">
         html{
             height: 100%;
             width: 100%;
         }
-    </style>
+    </style> -->
 </head>
 <body style="padding: 0;margin: 0;height: 100%;width: 100%;">
-<div id="printBody" style="width: 100%;height: 100%;">
+<div id="printBody" style="width: 700px;height: 100%;">
+    <span>到站:<span id="toAddress"></span></span>
+    <span style="float: right;">
+        <span id="year"></span>年
+        <span id="month"></span>月
+        <span id="day"></span>日</span>
     <table>
         <tr>
-            <td>发货单位</td><td>汕头</td><td>电话</td><td>15911111111</td>
-            <td>收货单位</td><td>广州</td><td>电话</td><td>15922222222</td>
+            <td colspan="2">发货单位</td><td id="customerName"></td><td>电话</td><td id="telephone"></td>
+            <td>收货单位</td><td id="receiver"></td><td>电话</td><td colspan="2" id="receiverMobile">15922222222</td>
+        </tr>
+        <tr>
+            <td>品名</td><td>件数</td><td>重量(kg)</td><td>单位</td>
+            <td>金额</td><td>保价</td><td>保价费</td><td>中转费</td><td>专送费</td><td>总价</td>
+        </tr>
+        <tr>
+            <td id="productName">布匹</td><td id="productNumber">4</td><td ="kiloCount">0</td><td id="productPack">1</td>
+            <td id="transportFee">69</td><td id="offer">0</td><td id="insuranceFee">0</td>
+            <td id="shipmentFee">32</td><td id="deliverFee">23</td><td id="totalFee" rowspan="2">124</td>
+        </tr>
+        <tr>
+            <td></td><td></td><td></td><td></td>
+            <td></td><td></td><td></td><td></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td>代收货款</td><td colspan="2" id="collectionFee">0</td>
+            <td colspan="7" style="text-align: left">总金额(大写)
+                <span id="thousand" style="width: 40px;display: inline-block;text-align: center;"></span>仟
+                <span id="hundred" style="width: 40px;display: inline-block;text-align: center;"></span>佰
+                <span id="ten" style="width: 40px;display: inline-block;text-align: center;"></span>拾
+                <span id="unit" style="width: 40px;display: inline-block;text-align: center;"></span>元</td>
+        </tr>
+        <tr>
+            <td>提货人签收</td><td colspan="3"></td>
+            <td>经办人</td><td id="handledBy"></td>
+            <td rowspan="2">付款方式</td>
+            <td>现金</td><td>提付</td><td>月结</td>
+        </tr>
+        <tr>
+            <td>备注</td><td colspan="5"></td>
+            <td id="xj"></td><td id="tf"></td><td id="yj"></td>
         </tr>
     </table>
-
-
-
 </div>
+<input type="button" name="print" value="打印" onclick="clickPrint()"/>
+
 
 <script type="text/javascript" src="js/jquery-1.4.4.min.js"></script>
+<script type="text/javascript" src="js/js.js"></script>
+
 <script type="text/javascript">
-    // var pdata = [
-    //     {"id":"productId","top":"95","left":"20"},
-    //     {"id":"customer","top":"120","left":"80"},
-    //     {"id":"dfadfa","top":"150","left":"50"}
-    // ]
-    // var infoHtml = '';
-    // for (var i = 0;i<pdata.length;i++){
-    //     var top1 = (pdata[i].top/176)*100+'%';
-    //     var left = (pdata[i].left/261)*100+'%';
-    //     infoHtml += '<span style="display:block;position:absolute;top:'+top1+';left:'+left+';">'+pdata[i].id+'</span>';
-    // }
     function getvalue(name){    
         var str = window.location.search;   //location.search是从当前URL的?号开始的字符串     
         if (str.indexOf(name) != -1)	//判断是否收到值
@@ -50,19 +76,135 @@
             }  
         }
     }
+    function initBillInfo(billData){
+        if(!billData){
+            return;
+        }
+
+        console.log(billData);
+
+        var billInfo = billData.billInfo;
+        var billFee = billData.billFee;
+        var customerInfo = billData.customerInfo;
+        var billDetailFeeInfos = billData.billDetailFeeInfos;
+
+        $("#customerName").html(billInfo.sender);
+        $("#telephone").html(billInfo.senderMobile);
+
+        $("#receiver").html(billInfo.receiver);
+        $("#receiverMobile").html(billInfo.receiverMobile);
+
+        $("#productPack").html(billInfo.productPack);
+        $("#productName").html(billInfo.productName);
+        $("#productNumber").html(billInfo.productNumber);
+
+        $("#transportFee").html(billFee.transportFee);
+
+        $("#offer").html(billFee.offer);
+        $("#insuranceFee").html(billFee.insuranceFee);
+        $("#shipmentFee").html(billFee.shipmentFee);
+        $("#deliverFee").html(billFee.deliverFee);
+
+        $("#collectionFee").html(billFee.collectionFee);
+
+        $("#mark").html(billInfo.mark);
+        $("#handledBy").html(billInfo.handledBy);
+
+        if(billFee.feePayType == 1){
+            $("#yj").html('✔');
+        }else if(billFee.feePayType == 2){
+            $("#tf").html('✔');
+        }else if(billFee.feePayType == 3){
+            $("#xj").html('✔');
+        }else if(billFee.feePayType == 4){
+        }
+
+        for(var i = 0; i < billDetailFeeInfos.length; i++){
+            if(billDetailFeeInfos[i].type == 1){
+                $('#kiloCount').html(billDetailFeeInfos[i].unit);
+            }
+        }
+
+        $("#toAddress").html(billInfo.toAddress);
+        var createDate = new Date(billInfo.createDate).format("yyyy-MM-dd");
+        var days = createDate.split('-');
+        $("#year").html(days[0]);
+        $("#month").html(days[1]);
+        $("#day").html(days[2]);
+
+
+        var totalFee = billFee.transportFee + billFee.offer + billFee.insuranceFee
+            + billFee.shipmentFee + billFee.deliverFee;
+        $('#totalFee').html(totalFee);
+
+        totalFee = Math.floor(totalFee);
+        if(totalFee <= 9999){
+            var temp = totalFee % 10;
+            $("#unit").html(changeBigMonth(temp));
+            temp = Math.floor(totalFee / 10) % 10;
+            $("#ten").html(changeBigMonth(temp));
+            temp = Math.floor(totalFee / 100) % 10;
+            $("#hundred").html(changeBigMonth(temp));
+            temp = Math.floor(totalFee / 1000) % 10;
+            $("#thousand").html(changeBigMonth(temp));
+        }
+    }
+
+    function changeBigMonth(val){
+        if(val == 0){
+            return '零';
+        }else if(val == 1){
+            return '壹';
+        }else if(val == 2){
+            return '贰';
+        }else if(val == 3){
+            return '叁';
+        }else if(val == 4){
+            return '肆';
+        }else if(val == 5){
+            return '伍';
+        }else if(val == 6){
+            return '陆';
+        }else if(val == 7){
+            return '柒';
+        }else if(val == 8){
+            return '捌';
+        }else if(val == 9){
+            return '玖';
+        }
+    }
     var id = getvalue('id');
     if(id){
+        var billData = getBillData(id);
+	    initBillInfo(billData);
+        // var infoHtml = $("#printBody")[0].innerHTML;
+        // console.log(infoHtml);
+        // $("#printBody").html(infoHtml);
+        // window.print();
+    }
+
+    function clickPrint(){
         var infoHtml = $("#printBody")[0].innerHTML;
+        console.log(infoHtml);
         $("#printBody").html(infoHtml);
         window.print();
     }
-    //var infoHtml = $("#printBody")[0].innerHTML;
-    //$("#printBody").html(infoHtml);
-    //window.print();
+
 </script>
 <style>
-    table,table tr th, table tr td { border:1px solid #0094ff; }
-    table { width: 700px; min-height: 25px; line-height: 25px; text-align: center; border-collapse: collapse; padding:2px;}
+    table, table tr th, table tr td { border:1px solid #0094ff; }
+    table { 
+        width: 700px; 
+        min-height: 25px; 
+        line-height: 25px; 
+        text-align: center; 
+        border-collapse: 
+        collapse; padding:2px;
+    }
+    #printBody {
+        margin-left: 1cm;
+        margin-top: 2cm;
+    }
 </style>
 </body>
 </html>
